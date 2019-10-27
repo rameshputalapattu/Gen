@@ -8,13 +8,13 @@ Given a vector of probabilities `probs` where `sum(probs) = 1`, and a vector of 
 const categorical_with_support = CategoricalWithSupport()
 
 function logpdf(::CategoricalWithSupport, x::Any, probs::AbstractArray{U,1},support) where {U <: Real}
-    log(probs[x[1]])
+    error("Not Implemented")
+    (nothing, nothing)
 end
 
 function logpdf_grad(::CategoricalWithSupport, x::Any, probs::AbstractArray{U,1},support)  where {U <: Real}
-    grad = zeros(length(probs))
-    grad[x[1]] = 1.0 / probs[x[1]]
-    (nothing, grad)
+    error("Not Implemented")
+    (nothing, nothing,nothing)
 end
 
 function random(::CategoricalWithSupport, probs::AbstractArray{U,1},support) where {U <: Real}
@@ -25,6 +25,6 @@ end
 (::CategoricalWithSupport)(probs,support) = random(CategoricalWithSupport(), probs,support)
 
 has_output_grad(::CategoricalWithSupport) = false
-has_argument_grads(::CategoricalWithSupport) = (true,)
+has_argument_grads(::CategoricalWithSupport) = (false,false)
 
 export categorical_with_support
