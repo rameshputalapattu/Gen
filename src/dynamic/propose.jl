@@ -18,6 +18,7 @@ function traceat(state::GFProposeState, dist::Distribution{T},
 
     # sample return value
     retval = random(dist, args...)
+    println("retval from traceat:",$retval)
 
     # update assignment
     set_value!(state.choices, key, retval)
