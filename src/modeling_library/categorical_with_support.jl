@@ -26,7 +26,7 @@ end
 
 function random(::CategoricalWithSupport, probs::AbstractArray{U,1},support) where {U <: Real}
     idx = rand(Distributions.Categorical(probs))
-    println("idx:",idx)
+    
     SupportSample(support[idx],idx) 
 end
 
