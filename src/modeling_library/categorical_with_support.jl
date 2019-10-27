@@ -1,4 +1,4 @@
-struct CategoricalWithSupport <: Distribution{Int} end
+struct CategoricalWithSupport <: Distribution{Any} end
 
 """
     categorical(probs::AbstractArray{U, 1}) where {U <: Real}
