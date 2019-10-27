@@ -7,19 +7,19 @@ Given a vector of probabilities `probs` where `sum(probs) = 1`, and a vector of 
 """
 const categorical_with_support = CategoricalWithSupport()
 
-function logpdf(::CategoricalWithSupport, x::Int, probs::AbstractArray{U,1},support) where {U <: Real}
-    log(probs[x])
+function logpdf(::CategoricalWithSupport, x::AbstractArray{Any,1}, probs::AbstractArray{U,1},support) where {U <: Real}
+    log(probs[x[1]])
 end
 
-function logpdf_grad(::CategoricalWithSupport, x::Int, probs::AbstractArray{U,1},support)  where {U <: Real}
+function logpdf_grad(::CategoricalWithSupport, x::AbstractArray{Any,1}, probs::AbstractArray{U,1},support)  where {U <: Real}
     grad = zeros(length(probs))
-    grad[x] = 1.0 / probs[x]
+    grad[x[1]] = 1.0 / probs[x[1]]
     (nothing, grad)
 end
 
 function random(::CategoricalWithSupport, probs::AbstractArray{U,1},support) where {U <: Real}
     idx = rand(Distributions.Categorical(probs))
-    support[idx]
+    [support[idx],idx]
 end
 
 (::CategoricalWithSupport)(probs,support) = random(CategoricalWithSupport(), probs,support)
