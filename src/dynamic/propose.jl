@@ -17,6 +17,7 @@ function traceat(state::GFProposeState, dist::Distribution{T},
     visit!(state.visitor, key)
 
     # sample return value
+    println("just before calculating ret val")
     retval = random(dist, args...)
     println("retval from traceat:",retval)
 
